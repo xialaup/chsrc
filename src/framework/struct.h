@@ -7,7 +7,7 @@
  * Contributors  : @livelycode36
  *               |
  * Created On    : <2023-08-29>
- * Last Modified : <2026-01-21>
+ * Last Modified : <2026-02-22>
  *
  * chsrc struct
  * ------------------------------------------------------------*/
@@ -93,6 +93,18 @@ Source_t;
 #define NeedContribute      NULL
 /* 由 prelude() 填充 */
 #define FeedByPrelude NULL
+
+
+
+/* 换源的作用域 */
+typedef enum Scope_t
+{
+  DefaultScope, /* 默认作用域，即根据实际情况最佳的作用域 */
+  SystemScope,
+  UserScope,
+  ProjectScope
+}
+Scope_t;
 
 
 typedef enum Capability_t

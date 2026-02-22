@@ -11,7 +11,7 @@
  *               | @Mikachu2333
  *               |
  * Created On    : <2023-08-29>
- * Last Modified : <2025-12-29>
+ * Last Modified : <2026-02-22>
  *
  * chsrc framework
  * ------------------------------------------------------------*/
@@ -47,6 +47,7 @@ struct
   // 用户命令选项
   bool Ipv6Mode;
   bool LocalMode;
+  Scope_t Scope;
   bool EnglishMode;
   bool DryRunMode;
   bool NoColorMode;
@@ -58,6 +59,7 @@ ProgMode =
   .TargetGroupMode = false,
   .Ipv6Mode = false,
   .LocalMode = false,
+  .Scope = DefaultScope,
   .EnglishMode = false,
   .DryRunMode = false,
   .NoColorMode = false
@@ -71,6 +73,11 @@ void chsrc_set_target_group_mode(){ProgMode.TargetGroupMode = true;}
 
 bool chsrc_in_reset_mode(){return ProgMode.ResetMode;}
 bool chsrc_in_local_mode(){return ProgMode.LocalMode;}
+bool chsrc_in_default_scope_mode(){return ProgMode.Scope == DefaultScope;}
+bool chsrc_in_user_scope_mode(){return ProgMode.Scope == UserScope;}
+bool chsrc_in_project_scope_mode(){return ProgMode.Scope == ProjectScope;}
+bool chsrc_in_system_scope_mode(){return ProgMode.Scope == SystemScope;}
+
 bool chsrc_in_english_mode(){return ProgMode.EnglishMode;}
 bool chsrc_in_no_color_mode(){return ProgMode.NoColorMode;}
 
