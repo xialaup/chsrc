@@ -100,12 +100,21 @@ Source_t;
 typedef enum Scope_t
 {
   DefaultScope, /* 默认作用域，即根据实际情况最佳的作用域 */
-  SystemScope,
+
+  ProjectScope,
   UserScope,
-  ProjectScope
+  SystemScope,
 }
 Scope_t;
 
+typedef enum ScopeCapability_t
+{
+  ScopeCap_Unknown,                 /* 未知，缺乏对该 target 的细致了解 */
+  ScopeCap_Unable,                  /* 不支持该作用域 */
+  ScopeCap_Able_But_NotImplemented, /* 支持但chsrc尚未实现 */
+  ScopeCap_Able_And_Implemented     /* 支持且chsrc已经实现 */
+}
+ScopeCapability_t;
 
 typedef enum Capability_t
 {
@@ -152,6 +161,9 @@ typedef struct Target_t
 
   Capability_t cap_local;  /* 是否支持 local mode */
   char *cap_local_explain; /* local mode 的说明 */
+
+  Scope_t default_scope;           /* 默认作用域 */
+  ScopeCapability_t scope_caps[3]; /* 各作用域的支持情况 */
 
   char *note;              /* 备注 */
 
