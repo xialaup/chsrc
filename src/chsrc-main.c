@@ -745,6 +745,45 @@ main (int argc, char const *argv[])
           else if (xy_streql (argv[i], "-local"))
             {
               ProgMode.LocalMode = true;
+              char *msg = CHINESE ? " -local 选项已弃用，请使用 -scope=project"
+                                  : " -local is deprecated, please use -scope=project";
+              chsrc_error (msg);
+              return Exit_Unsupported;
+            }
+          else if (xy_str_start_with (argv[i], "-scope="))
+            {
+              const char *scope = argv[i] + 7;
+              if (xy_streql_ic (scope, "project"))
+                {
+                  ProgMode.Scope = ProjectScope;
+                  ProgMode.LocalMode = true; /* 迁移过程中，暂时使用原有的 LocalMode 来实现 */
+                }
+              else if (xy_streql_ic (scope, "user"))
+                {
+                  ProgMode.Scope = UserScope;
+                }
+              else if (xy_streql_ic (scope, "system"))
+                {
+                  ProgMode.Scope = SystemScope;
+                }
+              else if (xy_streql_ic (scope, "default"))
+                {
+                  ProgMode.Scope = DefaultScope;
+                }
+              else
+                {
+                  if (ENGLISH)
+                    {
+                      char *msg = "Unknown scope: ";
+                      chsrc_error (xy_strcat (3, msg, scope, ". Valid scopes are: default, project, user, system"));
+                    }
+                  else
+                    {
+                      char *msg = "未知的换源作用域: ";
+                      chsrc_error (xy_strcat (4, msg, scope, "。", "有效的换源作用域为: default, project, user, system"));
+                    }
+                  return Exit_Unknown;
+                }
             }
           else if (xy_streql (argv[i], "-en") || xy_streql (argv[i], "-english"))
             {
