@@ -46,7 +46,6 @@ struct
 
   // 用户命令选项
   bool Ipv6Mode;
-  bool LocalMode;
   Scope_t Scope;
   bool EnglishMode;
   bool DryRunMode;
@@ -58,7 +57,6 @@ ProgMode =
   .ResetMode   = false,
   .TargetGroupMode = false,
   .Ipv6Mode = false,
-  .LocalMode = false,
   .Scope = DefaultScope,
   .EnglishMode = false,
   .DryRunMode = false,
@@ -72,7 +70,6 @@ bool chsrc_in_standalone_mode() {return !ProgMode.TargetGroupMode;}
 void chsrc_set_target_group_mode(){ProgMode.TargetGroupMode = true;}
 
 bool chsrc_in_reset_mode(){return ProgMode.ResetMode;}
-bool chsrc_in_local_mode(){return ProgMode.LocalMode;}
 bool chsrc_in_default_scope_mode(){return ProgMode.Scope == DefaultScope;}
 bool chsrc_in_user_scope_mode(){return ProgMode.Scope == UserScope;}
 bool chsrc_in_project_scope_mode(){return ProgMode.Scope == ProjectScope;}

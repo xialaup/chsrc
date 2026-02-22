@@ -47,7 +47,7 @@ pl_python_pdm_setsrc (char *option)
 
   char *cmd = NULL;
 
-  if (chsrc_in_local_mode())
+  if (chsrc_in_project_scope_mode())
     cmd = xy_2strcat ("pdm config --local pypi.url ", source.url);
   else
     cmd = xy_2strcat ("pdm config --global pypi.url ", source.url);

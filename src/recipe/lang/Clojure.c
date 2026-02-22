@@ -38,7 +38,7 @@ pl_clojure_setsrc (char *option)
 {
   chsrc_use_this_source (pl_clojure);
 
-  if (chsrc_in_local_mode())
+  if (chsrc_in_project_scope_mode())
     {
       chsrc_note2 ("请在项目根目录中的 project.clj 中手动添加 :mirrors 关键字:");
       char *config = xy_str_gsub (RAWSTR_pl_clojure_project_clj, "@url@", source.url);

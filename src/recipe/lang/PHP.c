@@ -58,7 +58,7 @@ pl_php_setsrc (char *option)
   chsrc_use_this_source (pl_php);
 
   char *where = " -g ";
-  if (chsrc_in_local_mode())
+  if (chsrc_in_project_scope_mode())
     {
       where = " ";
     }

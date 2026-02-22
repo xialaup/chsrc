@@ -60,7 +60,7 @@ void
 pl_python_pip_setsrc (char *option)
 {
   // 对于不支持的情况，尽早结束
-  if (chsrc_in_local_mode())
+  if (chsrc_in_project_scope_mode())
     {
       char *msg = ENGLISH ? "pip doesn't support `-local`. SKIP changing source!" : "pip 不支持 -local，跳过换源";
       chsrc_error (msg);

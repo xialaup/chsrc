@@ -51,7 +51,7 @@ pl_js_bun_setsrc (char *option)
 
   content = xy_str_gsub (content, "@url@", source.url);
 
-  if (chsrc_in_local_mode())
+  if (chsrc_in_project_scope_mode())
     {
       chsrc_note2 ("请手动写入以下内容到本项目根目录的 bunfig.toml 文件中");
     }

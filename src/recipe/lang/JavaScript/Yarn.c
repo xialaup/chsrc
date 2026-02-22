@@ -62,7 +62,7 @@ pl_js_yarn_setsrc (char *option)
   // 从 Yarn V2 开始，使用新的配置名
   if (pl_js_yarn_get_yarn_version () >= 2)
     {
-      if (chsrc_in_local_mode()) // Yarn 默认情况下就是基于本项目换源
+      if (chsrc_in_project_scope_mode()) // Yarn 默认情况下就是基于本项目换源
         cmd = xy_2strcat ("yarn config set npmRegistryServer ", source.url);
       else
         cmd = xy_2strcat ("yarn config set npmRegistryServer --home ", source.url);
@@ -71,7 +71,7 @@ pl_js_yarn_setsrc (char *option)
     }
   else
     {
-      if (chsrc_in_local_mode())
+      if (chsrc_in_project_scope_mode())
         {
           char *msg = ENGLISH ? "Yarn v1 doesn't support `-local`. SKIP changing source!" : "Yarn v1 不支持 -local，跳过换源";
           chsrc_error (msg);

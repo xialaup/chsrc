@@ -43,7 +43,7 @@ pl_python_uv_prelude (void)
 char *
 pl_python_find_uv_config (bool mkdir)
 {
-  if (chsrc_in_local_mode())
+  if (chsrc_in_project_scope_mode())
     {
       return xy_2strcat (PL_Python_uv_Local_ConfigPath, PL_Python_uv_ConfigFile);
     }

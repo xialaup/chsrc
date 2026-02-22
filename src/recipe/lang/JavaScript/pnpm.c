@@ -45,7 +45,7 @@ pl_js_pnpm_setsrc (char *option)
 
   char *cmd = NULL;
 
-  if (chsrc_in_local_mode())
+  if (chsrc_in_project_scope_mode())
     cmd = xy_2strcat ("pnpm config --location project set registry ", source.url);
   else
     cmd = xy_2strcat ("pnpm config -g set registry ", source.url);

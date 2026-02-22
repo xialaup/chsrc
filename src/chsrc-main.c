@@ -303,19 +303,20 @@ cli_print_target_features (Target_t *target, const char *input_target_name)
   }
 
   {
-  char *msg = ENGLISH ? " Locally: Change source only for this project " : " Locally: 仅对本项目换源 ";
-  char *locally_msg = xy_strcat (3, msg, "| chsrc set -local ", input_target_name);
+  char *msg = CHINESE ? " Scope: 换源作用域 "
+                      : " Scope: scope of the recipe";
+  char *scope_msg = xy_strcat (3, msg, "| chsrc set -scope=default|project|user|system ", input_target_name);
 
   switch (target->cap_local)
     {
     case CanNot:
-      printf (" %s%s\n", bdred(NoMark), locally_msg);br();
+      printf (" %s%s\n", bdred(NoMark), scope_msg);br();
       break;
     case FullyCan:
-      printf (" %s%s\n", bdgreen(YesMark), purple(locally_msg));br();
+      printf (" %s%s\n", bdgreen(YesMark), purple(scope_msg));br();
       break;
     case PartiallyCan:
-      printf (" %s%s\n\n   %s\n", bdgreen(HalfYesMark), purple(locally_msg),
+      printf (" %s%s\n\n   %s\n", bdgreen(HalfYesMark), purple(scope_msg),
               target->cap_local_explain ? target->cap_local_explain : "");br();
       break;
     default:
@@ -744,11 +745,10 @@ main (int argc, char const *argv[])
             }
           else if (xy_streql (argv[i], "-local"))
             {
-              ProgMode.LocalMode = true;
+              ProgMode.Scope = ProjectScope;
               char *msg = CHINESE ? " -local 选项已弃用，请使用 -scope=project"
                                   : " -local is deprecated, please use -scope=project";
-              chsrc_error (msg);
-              return Exit_Unsupported;
+              chsrc_warn (msg);
             }
           else if (xy_str_start_with (argv[i], "-scope"))
             {
@@ -766,7 +766,6 @@ main (int argc, char const *argv[])
               if (xy_streql_ic (scope, "project"))
                 {
                   ProgMode.Scope = ProjectScope;
-                  ProgMode.LocalMode = true; /* 迁移过程中，暂时使用原有的 LocalMode 来实现 */
                 }
               else if (xy_streql_ic (scope, "user"))
                 {
