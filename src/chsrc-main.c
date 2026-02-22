@@ -723,8 +723,8 @@ main (int argc, char const *argv[])
 
   /**
    * (1)
-   * chsrc set -local -en target mirror
-   *        1    2     3     4      5
+   * chsrc set -scope=project -en target mirror
+   *        1        2         3     4      5
    * argc = 5
    *
    * (2) 考虑到这种情况，i必须还是从1开始
@@ -750,9 +750,19 @@ main (int argc, char const *argv[])
               chsrc_error (msg);
               return Exit_Unsupported;
             }
-          else if (xy_str_start_with (argv[i], "-scope="))
+          else if (xy_str_start_with (argv[i], "-scope"))
             {
-              const char *scope = argv[i] + 7;
+              const char *scope = NULL;
+              if (xy_streql (argv[i], "-scope"))
+                {
+                  scope = argv[i+1];
+                  cli_arg_Target_pos++;
+                  cli_arg_Mirror_pos++;
+                }
+              else if (xy_str_start_with (argv[i], "-scope="))
+                {
+                  scope = argv[i] + 7;
+                }
               if (xy_streql_ic (scope, "project"))
                 {
                   ProgMode.Scope = ProjectScope;
@@ -774,12 +784,12 @@ main (int argc, char const *argv[])
                 {
                   if (ENGLISH)
                     {
-                      char *msg = "Unknown scope: ";
+                      char *msg = "Invalid scope: ";
                       chsrc_error (xy_strcat (3, msg, scope, ". Valid scopes are: default, project, user, system"));
                     }
                   else
                     {
-                      char *msg = "未知的换源作用域: ";
+                      char *msg = "无效的换源作用域: ";
                       chsrc_error (xy_strcat (4, msg, scope, "。", "有效的换源作用域为: default, project, user, system"));
                     }
                   return Exit_Unknown;
