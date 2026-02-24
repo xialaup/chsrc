@@ -25,9 +25,12 @@ pl_js_group_prelude (void)
   chef_set_cooks (this, 1, "@ccmywish");
   chef_set_sauciers (this, 2, "@lontten", "@MrWillCom");
 
-  chef_allow_local_mode (this, PartiallyCan,
-    "支持 npm, yarn v2, pnpm, 不支持 yarn v1",
-    "Support npm, yarn v2, pnpm, not yarn v1");
+  /* ProjectScope 支持 npm, yarn v2, pnpm, 不支持 yarn v1 */
+  chef_set_scope_cap (this, ProjectScope, ScopeCap_Able_And_Implemented);
+  chef_set_scope_cap (this, UserScope,    ScopeCap_Able_And_Implemented);
+  chef_set_scope_cap (this, SystemScope,  ScopeCap_Unknown);
+  chef_set_default_scope (this, UserScope);
+
   chef_allow_english(this);
   chef_allow_user_define(this);
 
@@ -59,7 +62,11 @@ pl_js_nodejs_binary_prelude (void)
   chef_set_cooks (this, 1, "@ccmywish");
   chef_set_sauciers (this, 0);
 
-  chef_allow_local_mode (this, CanNot, NULL, NULL);
+  chef_set_scope_cap (this, ProjectScope, ScopeCap_Unknown);
+  chef_set_scope_cap (this, UserScope,    ScopeCap_Able_And_Implemented);
+  chef_set_scope_cap (this, SystemScope,  ScopeCap_Unknown);
+  chef_set_default_scope (this, UserScope);
+
   chef_allow_english(this);
   chef_allow_user_define(this);
 

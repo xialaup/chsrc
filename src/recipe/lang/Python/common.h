@@ -41,7 +41,12 @@ pl_python_group_prelude (void)
   chef_set_cooks (this, 2, "@ccmywish", "@happy-game");
   chef_set_sauciers (this, 3, "@xyx1926885268", "@Kattos", "@Mikachu2333");
 
-  chef_allow_local_mode (this, PartiallyCan, "部分包管理器支持项目级换源", "Some package managers support project-level source changing");
+  /* 部分包管理器支持 ProjectScope，但是为了让流程执行下去，我们这里都写 ScopeCap_Able_And_Implemented */
+  chef_set_scope_cap (this, ProjectScope, ScopeCap_Able_And_Implemented);
+  chef_set_scope_cap (this, UserScope,    ScopeCap_Able_And_Implemented);
+  chef_set_scope_cap (this, SystemScope,  ScopeCap_Unable);
+  chef_set_default_scope (this, UserScope);
+
   chef_allow_english(this);
   chef_allow_user_define(this);
 

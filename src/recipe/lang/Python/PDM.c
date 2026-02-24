@@ -17,7 +17,11 @@ pl_python_pdm_prelude (void)
   chef_set_cooks (this, 1, "@ccmywish");
   chef_set_sauciers (this, 0);
 
-  chef_allow_local_mode (this, FullyCan, NULL, NULL);
+  chef_set_scope_cap (this, ProjectScope, ScopeCap_Able_And_Implemented);
+  chef_set_scope_cap (this, UserScope,    ScopeCap_Able_And_Implemented);
+  chef_set_scope_cap (this, SystemScope,  ScopeCap_Unable);
+  chef_set_default_scope (this, UserScope);
+
   chef_allow_english(this);
   chef_allow_user_define(this);
 

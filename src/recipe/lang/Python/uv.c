@@ -17,7 +17,11 @@ pl_python_uv_prelude (void)
   chef_set_cooks (this, 2, "@happy-game", "@MingriLingran");
   chef_set_sauciers (this, 2, "@Kattos", "@ccmywish");
 
-  chef_allow_local_mode (this, FullyCan, NULL, NULL);
+  chef_set_scope_cap (this, ProjectScope, ScopeCap_Able_And_Implemented);
+  chef_set_scope_cap (this, UserScope,    ScopeCap_Able_And_Implemented);
+  chef_set_scope_cap (this, SystemScope,  ScopeCap_Able_But_Not_Implemented);
+  chef_set_default_scope (this, UserScope);
+
   chef_allow_english(this);
   chef_allow_user_define(this);
 

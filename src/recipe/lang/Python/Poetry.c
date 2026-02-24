@@ -17,7 +17,12 @@ pl_python_poetry_prelude (void)
   chef_set_cooks (this, 1, "@ccmywish");
   chef_set_sauciers (this, 0);
 
-  chef_allow_local_mode (this, FullyCan, "Poetry 默认使用项目级换源", "Poetry uses project-level source changing by default");
+  /* Poetry 仅支持项目级换源 */
+  chef_set_scope_cap (this, ProjectScope, ScopeCap_Able_And_Implemented);
+  chef_set_scope_cap (this, UserScope,    ScopeCap_Unable);
+  chef_set_scope_cap (this, SystemScope,  ScopeCap_Unable);
+  chef_set_default_scope (this, ProjectScope);
+
   chef_allow_english(this);
   chef_allow_user_define(this);
 
@@ -41,12 +46,7 @@ pl_python_poetry_setsrc (char *option)
   if (chsrc_in_standalone_mode())
     chsrc_confirm_source(&source);
 
-  char *cmd = NULL;
-
-  if (!chsrc_in_project_scope_mode())
-    chsrc_alert2 ("Poetry 仅支持项目级换源");
-
-  cmd = xy_2strcat ("poetry source add my_mirror ", source.url);
+  char *cmd = xy_2strcat ("poetry source add my_mirror ", source.url);
   chsrc_run (cmd, RunOpt_No_Last_New_Line);
 
   if (chsrc_in_standalone_mode())
