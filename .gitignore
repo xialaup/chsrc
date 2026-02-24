@@ -53,7 +53,7 @@ chsrc_tmp_test.txt.bak
 # Generated when testing (when there's a bug)
 nul
 
-# 'chsrc set -local' generated
+# 'chsrc set -scope=project' generated
 .bundle
 .npmrc
 

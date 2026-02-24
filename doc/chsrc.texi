@@ -6,15 +6,15 @@
 @c Contributors  : Nul None <nul@none.org>
 @c               |
 @c Created On    : <2024-08-22>
-@c Last Modified : <2025-10-29>
+@c Last Modified : <2026-02-24>
 @c --------------------------------------------------------------
 
 \input texinfo
 @setfilename chsrc.info
 @settitle chsrc
 
-@set Chsrc_Version v0.2.3.1
-@set Doc_Publish_Date 2025-10-29
+@set Chsrc_Version v0.2.5
+@set Doc_Publish_Date 2026-02-24
 
 @copying
 @comment 这是软件copyright，不是文档copyright，因此不放在titlepage
@@ -137,8 +137,8 @@ Dry Run，模拟换源过程，命令仅打印并不运行
 @item -ipv6
 使用IPv6测速
 
-@item -local
-仅对本项目而非全局换源 (通过ls <target>查看支持情况)
+@item -scope
+设置换源的作用域，可选值有：project|user|system|default (通过ls <target>查看支持情况)
 
 @item -en(glish)
 使用英文输出

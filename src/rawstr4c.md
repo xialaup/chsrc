@@ -63,7 +63,7 @@
 
 选项:
    -dry                       Dry Run，模拟换源过程，命令仅打印并不运行
-   -local                     仅对本项目而非全局换源 (通过ls <target>查看支持情况)
+   -scope=project|user|system 仅对本项目换源 / 用户级换源 / 系统级换源 (通过ls <target>查看)
    -ipv6                      使用IPv6测速
    -en(glish)                 使用英文输出
    -no-color                  无颜色输出
@@ -114,7 +114,7 @@ COMMANDS:
 
 OPTIONS:
    -dry                       Dry Run. Simulate the source changing process, command only prints, not run
-   -local                     Change source only for this project rather than globally (Via `ls <target>`)
+   -scope=project|user|system Change source only for this project / user level / system level (Via `ls <target>`)
    -ipv6                      Speed measurement using IPv6
    -en(glish)                 Output in English
    -no-color                  Output without color
@@ -122,7 +122,7 @@ OPTIONS:
 MAINTAIN:
    We invite you to become a Chef to ensure the quality of recipes you are familiar with for users:
 
-   Source Code:               @url@
+   Source Code:               https://github.com/RubyMetric/chsrc
    Become a Maintainer:       https://github.com/RubyMetric/chsrc/issues/275
 ```
 
