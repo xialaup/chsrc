@@ -10,14 +10,18 @@ pl_clojure_prelude ()
   chef_prep_this (pl_clojure, s);
 
   chef_set_created_on   (this, "2023-09-10");
-  chef_set_last_updated (this, "2025-08-10");
+  chef_set_last_updated (this, "2026-02-24");
   chef_set_sources_last_updated (this, "2025-08-21");
 
   chef_set_chef (this, NULL);
   chef_set_cooks (this, 1, "@ccmywish");
   chef_set_sauciers (this, 1, "@hezonglun");
 
-  chef_allow_local_mode (this, FullyCan, NULL, NULL);
+  chef_set_scope_cap (this, ProjectScope, ScopeCap_Able_And_Implemented);
+  chef_set_scope_cap (this, UserScope,    ScopeCap_Able_And_Implemented);
+  chef_set_scope_cap (this, SystemScope,  ScopeCap_Unable);
+  chef_set_default_scope (this, UserScope);
+
   chef_deny_english(this);
   chef_allow_user_define(this);
 
@@ -51,5 +55,6 @@ pl_clojure_setsrc (char *option)
       println (config);
     }
 
+  chsrc_determine_chgtype (ChgType_Manual);
   chsrc_conclude (&source);
 }
