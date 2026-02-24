@@ -17,7 +17,8 @@ os_linuxlite_prelude ()
   chef_set_cooks (this, 1, "@ccmywish");
   chef_set_sauciers (this, 1, "@Yangmoooo");
 
-  chef_allow_local_mode (this, CanNot, NULL, NULL);
+  chef_set_os_scope (this);
+
   chef_deny_english(this);
   chef_deny_user_define(this);
 

@@ -17,7 +17,8 @@ os_kali_prelude ()
   chef_set_cooks (this, 1, "@G_I_Y");
   chef_set_sauciers (this, 2, "@Yangmoooo", "@happy-game");
 
-  chef_allow_local_mode (this, CanNot, NULL, NULL);
+  chef_set_os_scope (this);
+
   chef_deny_english(this);
   chef_deny_user_define(this);
 

@@ -17,7 +17,8 @@ os_openwrt_prelude ()
   chef_set_cooks (this, 1, "@ccmywish");
   chef_set_sauciers (this, 2, "@Yangmoooo", "@happy-game");
 
-  chef_allow_local_mode (this, CanNot, NULL, NULL);
+  chef_set_os_scope (this);
+
   chef_allow_english(this);
   chef_allow_user_define(this);
 

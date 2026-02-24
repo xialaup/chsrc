@@ -17,8 +17,8 @@ os_solus_prelude ()
   chef_set_cooks (this, 1, "@ccmywish");
   chef_set_sauciers (this, 0);
 
+  chef_set_os_scope (this);
 
-  chef_allow_local_mode (this, CanNot, NULL, NULL);
   chef_deny_english(this);
   chef_allow_user_define(this);
 

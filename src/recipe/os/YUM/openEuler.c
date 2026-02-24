@@ -17,7 +17,7 @@ os_openeuler_prelude ()
   chef_set_chef (this, NULL);
   chef_set_sauciers (this, 3, "@ccmywish", "@Yangmoooo", "@happy-game");
 
-  chef_allow_local_mode (this, CanNot, NULL, NULL);
+  chef_set_os_scope (this);
   chef_deny_english(this);
   chef_deny_user_define(this);
 

@@ -17,8 +17,8 @@ os_netbsd_prelude ()
   chef_set_cooks (this, 2, "@ccmywish", "@G_I_Y");
   chef_set_sauciers (this, 1, "@hezonglun");
 
+  chef_set_os_scope (this);
 
-  chef_allow_local_mode (this, CanNot, NULL, NULL);
   chef_deny_english(this);
   chef_deny_user_define(this);
 
