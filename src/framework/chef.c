@@ -5,7 +5,7 @@
  * File Authors  : @ccmywish
  * Contributors  : @BingChunMoLi
  * Created On    : <2025-08-09>
- * Last Modified : <2026-01-21>
+ * Last Modified : <2026-02-24>
  *
  * chef DSL: for chefs (recipe makers) to define a target
  * ------------------------------------------------------------*/
@@ -340,6 +340,21 @@ chef_set_default_scope (Target_t *target, Scope_t scope)
     }
 }
 
+
+/**
+ * @brief 由于操作系统相关的 target 换源都是系统级，所以 scope 都是固定的，我们提供此快捷函数来设置
+ */
+void
+chef_set_os_scope (Target_t *target)
+{
+  xy_cant_be_null (target);
+
+  chef_set_scope_cap (target, ProjectScope, ScopeCap_Unable);
+  chef_set_scope_cap (target, UserScope,    ScopeCap_Unable);
+  chef_set_scope_cap (target, SystemScope,  ScopeCap_Able_And_Implemented);
+
+  chef_set_default_scope (target, SystemScope);
+}
 
 
 void
